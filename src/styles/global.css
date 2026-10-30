@@ -234,6 +234,7 @@ a {
 
 .hero h1 {
 	margin: 1rem 0 0;
+	text-wrap: pretty;
 	font-family: var(--font-serif);
 	font-size: clamp(2rem, 5vw, 2.9rem);
 	font-weight: 600;
@@ -413,6 +414,7 @@ a {
 
 .article__title {
 	margin: 0.7rem 0 0;
+	text-wrap: pretty;
 	font-family: var(--font-serif);
 	font-size: clamp(1.8rem, 4.2vw, 2.4rem);
 	font-weight: 600;
@@ -792,5 +794,13 @@ a {
 	.post-nav .next {
 		grid-column: 1;
 		text-align: left;
+	}
+}
+
+/* 桌面端：标题区比正文略宽，避免长标题只剩一两个字换行 */
+@media (min-width: 960px) {
+	.article__head {
+		/* 只向右扩，保持与正文左对齐 */
+		margin-right: -90px;
 	}
 }
