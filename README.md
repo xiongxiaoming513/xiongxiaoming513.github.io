@@ -17,6 +17,8 @@
 
 ![归档页](docs/preview-archive.png)
 
+![归档页（按标签筛选）](docs/preview-archive-filtered.png)
+
 ## 快速开始
 
 ```bash
