@@ -15,6 +15,8 @@
 
 ![文章页](docs/preview-post.png)
 
+![归档页](docs/preview-archive.png)
+
 ## 快速开始
 
 ```bash
