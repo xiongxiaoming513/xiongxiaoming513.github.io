@@ -1,0 +1,31 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import FormattedDate from './FormattedDate.astro';
+
+interface Props {
+	post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { title, description, pubDate, tags } = post.data;
+const href = `/blog/${post.id}/`;
+---
+
+<li class="post-item">
+	<FormattedDate date={pubDate} format="short" />
+	<div>
+		<h3><a href={href}>{title}</a></h3>
+		<p>{description}</p>
+		{
+			tags.length > 0 && (
+				<div class="post-meta">
+					{tags.map((tag) => (
+						<a class="tag" href={`/tags/${encodeURIComponent(tag)}/`}>
+							{tag}
+						</a>
+					))}
+				</div>
+			)
+		}
+	</div>
+</li>

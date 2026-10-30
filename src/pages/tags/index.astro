@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getTags } from '../../lib/posts';
+
+const tags = await getTags();
+---
+
+<BaseLayout title="标签" description="按标签浏览全部文章。">
+	<section class="wrap article">
+		<header class="article__head">
+			<p class="article__meta">共 {tags.length} 个标签</p>
+			<h1 class="article__title">标签</h1>
+		</header>
+
+		<ul class="tag-cloud">
+			{
+				tags.map(({ tag, count }) => (
+					<li>
+						<a class="tag" href={`/tags/${encodeURIComponent(tag)}/`}>
+							{tag}
+							<span class="tag-count">{count}</span>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+</BaseLayout>

@@ -1,0 +1,67 @@
+---
+import { SITE } from '../consts';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const year = new Date().getFullYear();
+---
+
+<BaseLayout title="关于" description={`关于 ${SITE.author} 与这个站点。`}>
+	<section class="wrap article">
+		<header class="article__head">
+			<p class="article__meta">关于</p>
+			<h1 class="article__title">{SITE.author}</h1>
+		</header>
+
+		<div class="prose">
+			<p>
+				你好，我是 {SITE.author}。这里是我的个人笔记，主要写产品、工程和 AI
+				相关的话题，偶尔也写点别的。
+			</p>
+
+			<p>
+				我更喜欢把文章写短、写清楚，而不是写全。如果一篇文章需要靠堆砌术语才能显得专业，那大概说明我还没想明白。
+			</p>
+
+			<h2>我在关注什么</h2>
+			<ul>
+				<li>AI Agent 在真实工作流里到底能替代什么、不能替代什么</li>
+				<li>小团队如何用更少的人做出更完整的产品</li>
+				<li>软件工程里那些十年没变的老问题</li>
+			</ul>
+
+			<h2>这个站点怎么搭的</h2>
+			<p>
+				用 <a href="https://astro.build" rel="noopener noreferrer">Astro</a>
+				构建的纯静态站点：没有数据库、没有后端、没有跟踪脚本。内容用 Markdown 写，
+				构建时生成 HTML，托管在任意静态服务上。它应该能在十年后依然打得开。
+			</p>
+
+			<h2>联系我</h2>
+			<p>
+				邮件：<a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+			</p>
+			<p>
+				也可以在这些地方找到我：
+				{
+					SITE.social
+						.filter((item) => item.href.startsWith('http'))
+						.map((item) => (
+							<>
+								<a href={item.href} rel="noopener noreferrer">
+									{item.label}
+								</a>
+								{' '}
+							</>
+						))
+				}
+			</p>
+			<hr />
+			<p>
+				<small>本站内容采用 CC BY-NC-SA 4.0 许可，转载请注明出处。</small>
+			</p>
+			<p>
+				<small>© {year} {SITE.author}</small>
+			</p>
+		</div>
+	</section>
+</BaseLayout>

@@ -1,0 +1,4 @@
+# pnpm 11 起，依赖的构建脚本需要在 allowBuilds 里显式允许
+allowBuilds:
+  esbuild: true
+  sharp: true
