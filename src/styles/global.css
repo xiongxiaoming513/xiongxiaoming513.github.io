@@ -940,3 +940,112 @@ a {
 		font-size: 0.84rem;
 	}
 }
+
+/* ── 归档页筛选 ───────────────────────────────────────────── */
+
+.archive-filter {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	margin: -0.5rem 0 2.25rem;
+}
+
+.archive-filter__button {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35rem;
+	padding: 0.28rem 0.75rem;
+	border: 1px solid var(--line-strong);
+	border-radius: 999px;
+	background: transparent;
+	color: var(--ink-2);
+	font-family: inherit;
+	font-size: 0.8rem;
+	line-height: 1.7;
+	cursor: pointer;
+	transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.archive-filter__button:hover {
+	color: var(--accent);
+	border-color: var(--accent);
+}
+
+.archive-filter__button.is-active {
+	color: var(--accent);
+	border-color: var(--accent);
+	background: var(--accent-soft);
+}
+
+.archive-filter__count {
+	font-size: 0.7rem;
+	color: var(--ink-3);
+}
+
+.archive-filter__button.is-active .archive-filter__count {
+	color: var(--accent);
+}
+
+.archive-item[hidden],
+.archive-year[hidden] {
+	display: none;
+}
+
+.archive-hint {
+	margin: -1rem 0 2rem;
+	font-size: 0.82rem;
+	color: var(--ink-3);
+}
+
+/* ── 首页底部入口 ─────────────────────────────────────────── */
+
+.home-entry {
+	display: flex;
+	align-items: baseline;
+	gap: 1rem;
+	padding: 1.1rem 1.25rem;
+	border: 1px solid var(--line);
+	border-radius: 12px;
+	color: var(--ink);
+	text-decoration: none;
+	transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.home-entry:hover {
+	border-color: var(--accent);
+	background: var(--bg-soft);
+}
+
+.home-entry__label {
+	font-family: var(--font-serif);
+	font-size: 1.05rem;
+	font-weight: 600;
+}
+
+.home-entry__desc {
+	font-size: 0.85rem;
+	color: var(--ink-3);
+}
+
+.home-entry__arrow {
+	margin-left: auto;
+	color: var(--ink-3);
+	transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.home-entry:hover .home-entry__arrow {
+	color: var(--accent);
+	transform: translateX(3px);
+}
+
+@media (max-width: 480px) {
+	.home-entry {
+		flex-wrap: wrap;
+		gap: 0.25rem 0.75rem;
+		padding: 1rem;
+	}
+
+	.home-entry__desc {
+		font-size: 0.8rem;
+	}
+}

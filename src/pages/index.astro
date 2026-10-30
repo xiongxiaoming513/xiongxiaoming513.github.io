@@ -50,4 +50,12 @@ const tags = (await getTags()).slice(0, 8);
 			</section>
 		)
 	}
+
+	<section class="wrap section">
+		<a class="home-entry" href="/archive/">
+			<span class="home-entry__label">归档</span>
+			<span class="home-entry__desc">按时间线浏览全部 {posts.length} 篇文章</span>
+			<span class="home-entry__arrow" aria-hidden="true">→</span>
+		</a>
+	</section>
 </BaseLayout>

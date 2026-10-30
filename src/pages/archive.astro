@@ -1,9 +1,10 @@
 ---
 import FormattedDate from '../components/FormattedDate.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getSortedPosts, readingTime, type Post } from '../lib/posts';
+import { getSortedPosts, getTags, readingTime, type Post } from '../lib/posts';
 
 const posts = await getSortedPosts();
+const tags = await getTags();
 
 const groups = new Map<number, Post[]>();
 for (const post of posts) {
@@ -24,12 +25,37 @@ const earliestLabel = earliest
 	: '';
 ---
 
-<BaseLayout title="归档" description="全部文章的时间线，从最近一篇开始。">
+<BaseLayout title="归档" description="全部文章的时间线，可按标签筛选。">
 	<section class="wrap article">
 		<header class="article__head">
-			<p class="article__meta">共 {posts.length} 篇 · 始于 {earliestLabel}</p>
+			<p class="article__meta">
+				<span id="archive-count" aria-live="polite">共 {posts.length} 篇</span>
+				<span class="dot" />
+				<span>始于 {earliestLabel}</span>
+			</p>
 			<h1 class="article__title">归档</h1>
 		</header>
+
+		<nav class="archive-filter" aria-label="按标签筛选" id="archive-filter">
+			<button type="button" class="archive-filter__button is-active" data-tag="" aria-pressed="true">
+				全部
+				<span class="archive-filter__count">{posts.length}</span>
+			</button>
+			{
+				tags.map(({ tag, count }) => (
+					<button type="button" class="archive-filter__button" data-tag={tag} aria-pressed="false">
+						{tag}
+						<span class="archive-filter__count">{count}</span>
+					</button>
+				))
+			}
+		</nav>
+
+		<noscript>
+			<p class="archive-hint">
+				当前浏览器未启用 JavaScript，已显示全部文章。也可以去 <a href="/tags/">标签页</a> 按主题浏览。
+			</p>
+		</noscript>
 
 		{years.length > 1 && (
 			<nav class="archive-jump" aria-label="按年份跳转">
@@ -43,11 +69,11 @@ const earliestLabel = earliest
 			<section class="archive-year" id={`year-${year}`}>
 				<h2 class="archive-year__title">
 					{year}
-					<span>{groups.get(year)?.length ?? 0} 篇</span>
+					<span class="archive-year__count">{groups.get(year)?.length ?? 0} 篇</span>
 				</h2>
 				<ul class="archive-list">
 					{groups.get(year)?.map((post) => (
-						<li class="archive-item">
+						<li class="archive-item" data-tags={JSON.stringify(post.data.tags)}>
 							<a href={`/blog/${post.id}/`}>
 								<FormattedDate date={post.data.pubDate} format="md" />
 								<span class="archive-item__title">{post.data.title}</span>
@@ -64,3 +90,54 @@ const earliestLabel = earliest
 		<a class="more-link" href="/rss.xml">通过 RSS 订阅 →</a>
 	</section>
 </BaseLayout>
+
+<script>
+	const buttons = Array.from(
+		document.querySelectorAll<HTMLButtonElement>('#archive-filter .archive-filter__button'),
+	);
+	const items = Array.from(document.querySelectorAll<HTMLElement>('.archive-item'));
+	const yearSections = Array.from(document.querySelectorAll<HTMLElement>('.archive-year'));
+	const countEl = document.getElementById('archive-count');
+
+	function apply(tag: string, syncUrl = true) {
+		let visible = 0;
+
+		for (const item of items) {
+			const tags: string[] = JSON.parse(item.dataset.tags ?? '[]');
+			const show = tag === '' || tags.includes(tag);
+			item.hidden = !show;
+			if (show) visible += 1;
+		}
+
+		for (const section of yearSections) {
+			const shown = section.querySelectorAll<HTMLElement>('.archive-item:not([hidden])').length;
+			section.hidden = shown === 0;
+			const badge = section.querySelector<HTMLElement>('.archive-year__count');
+			if (badge) badge.textContent = `${shown} 篇`;
+		}
+
+		for (const button of buttons) {
+			const active = (button.dataset.tag ?? '') === tag;
+			button.classList.toggle('is-active', active);
+			button.setAttribute('aria-pressed', String(active));
+		}
+
+		if (countEl) {
+			countEl.textContent = tag === '' ? `共 ${items.length} 篇` : `筛选：${tag} · ${visible} 篇`;
+		}
+
+		if (syncUrl) {
+			const url = new URL(window.location.href);
+			if (tag === '') url.searchParams.delete('tag');
+			else url.searchParams.set('tag', tag);
+			window.history.replaceState(null, '', url);
+		}
+	}
+
+	for (const button of buttons) {
+		button.addEventListener('click', () => apply(button.dataset.tag ?? ''));
+	}
+
+	const initial = new URLSearchParams(window.location.search).get('tag') ?? '';
+	apply(initial, false);
+</script>
