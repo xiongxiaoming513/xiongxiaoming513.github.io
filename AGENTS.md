@@ -13,7 +13,7 @@
 | `src/content.config.ts` | 文章 frontmatter 的校验规则 | 新增字段先改这里 |
 | `src/layouts/` | 页面骨架（BaseLayout / BlogPost） | |
 | `src/components/` | 页头、页脚、列表项、目录、主题切换 | |
-| `src/pages/` | 路由：首页 / blog / tags / about / rss / 404 | |
+| `src/pages/` | 路由：首页 / blog / archive / tags / about / rss / 404 | |
 | `src/styles/global.css` | 全部设计变量与排版 | 颜色、字体、间距都在这 |
 | `scripts/check.mjs` | 构建产物自检：断链、SEO、RSS | |
 | `dist/` | 构建产物，**不要手改** | 已被 gitignore |

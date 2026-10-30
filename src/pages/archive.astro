@@ -1,0 +1,66 @@
+---
+import FormattedDate from '../components/FormattedDate.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getSortedPosts, readingTime, type Post } from '../lib/posts';
+
+const posts = await getSortedPosts();
+
+const groups = new Map<number, Post[]>();
+for (const post of posts) {
+	const year = post.data.pubDate.getFullYear();
+	const list = groups.get(year) ?? [];
+	list.push(post);
+	groups.set(year, list);
+}
+const years = [...groups.keys()].sort((a, b) => b - a);
+
+const earliest = posts[posts.length - 1];
+const earliestLabel = earliest
+	? new Intl.DateTimeFormat('zh-CN', {
+			year: 'numeric',
+			month: 'long',
+			timeZone: 'Asia/Shanghai',
+		}).format(earliest.data.pubDate)
+	: '';
+---
+
+<BaseLayout title="归档" description="全部文章的时间线，从最近一篇开始。">
+	<section class="wrap article">
+		<header class="article__head">
+			<p class="article__meta">共 {posts.length} 篇 · 始于 {earliestLabel}</p>
+			<h1 class="article__title">归档</h1>
+		</header>
+
+		{years.length > 1 && (
+			<nav class="archive-jump" aria-label="按年份跳转">
+				{years.map((year) => (
+					<a href={`#year-${year}`}>{year}</a>
+				))}
+			</nav>
+		)}
+
+		{years.map((year) => (
+			<section class="archive-year" id={`year-${year}`}>
+				<h2 class="archive-year__title">
+					{year}
+					<span>{groups.get(year)?.length ?? 0} 篇</span>
+				</h2>
+				<ul class="archive-list">
+					{groups.get(year)?.map((post) => (
+						<li class="archive-item">
+							<a href={`/blog/${post.id}/`}>
+								<FormattedDate date={post.data.pubDate} format="md" />
+								<span class="archive-item__title">{post.data.title}</span>
+								<span class="archive-item__meta">
+									{readingTime((post as { body?: string }).body ?? '')} 分钟
+								</span>
+							</a>
+						</li>
+					))}
+				</ul>
+			</section>
+		))}
+
+		<a class="more-link" href="/rss.xml">通过 RSS 订阅 →</a>
+	</section>
+</BaseLayout>

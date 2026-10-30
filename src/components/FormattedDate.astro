@@ -1,27 +1,37 @@
 ---
 interface Props {
 	date: Date;
-	format?: 'long' | 'short';
+	format?: 'long' | 'short' | 'md';
 }
 
 const { date, format = 'long' } = Astro.props;
 
+const md = new Intl.DateTimeFormat('zh-CN', {
+	month: '2-digit',
+	day: '2-digit',
+	timeZone: 'Asia/Shanghai',
+})
+	.format(date)
+	.replaceAll('/', '.');
+
 const formatted =
-	format === 'short'
-		? new Intl.DateTimeFormat('zh-CN', {
-				year: 'numeric',
-				month: '2-digit',
-				day: '2-digit',
-				timeZone: 'Asia/Shanghai',
-			})
-				.format(date)
-				.replaceAll('/', '.')
-		: new Intl.DateTimeFormat('zh-CN', {
-				year: 'numeric',
-				month: 'long',
-				day: 'numeric',
-				timeZone: 'Asia/Shanghai',
-			}).format(date);
+	format === 'md'
+		? md
+		: format === 'short'
+			? new Intl.DateTimeFormat('zh-CN', {
+					year: 'numeric',
+					month: '2-digit',
+					day: '2-digit',
+					timeZone: 'Asia/Shanghai',
+				})
+					.format(date)
+					.replaceAll('/', '.')
+			: new Intl.DateTimeFormat('zh-CN', {
+					year: 'numeric',
+					month: 'long',
+					day: 'numeric',
+					timeZone: 'Asia/Shanghai',
+				}).format(date);
 
 const iso = date.toISOString();
 ---
