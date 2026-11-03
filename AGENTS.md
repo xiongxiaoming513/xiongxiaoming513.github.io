@@ -16,6 +16,10 @@
 | `src/pages/` | 路由：首页 / blog / archive / tags / about / rss / 404 | |
 | `src/styles/global.css` | 全部设计变量与排版 | 颜色、字体、间距都在这 |
 | `scripts/check.mjs` | 构建产物自检：断链、SEO、RSS | |
+| `scripts/check-content.mjs` | 内容门禁：字段 / 结构 / 已发布文章锁定 | `make gate` |
+| `content-lock.json` | 已发布文章的 slug + pubDate 锁定 | 只能 `make lock` 更新 |
+| `runbooks/` | 回滚手册 | 发布异常先看这里 |
+| `docs/` | 基线表、回滚演练、路线图进度 | |
 | `dist/` | 构建产物，**不要手改** | 已被 gitignore |
 
 ## 常用命令

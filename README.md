@@ -99,6 +99,8 @@ Vercel / Netlify / Cloudflare Pages 都可以，构建命令 `pnpm build`，输�
 ├── scripts/check.mjs      # 构建产物自检
 ├── scripts/check-content.mjs  # 内容门禁（P0）
 ├── content-lock.json      # 已发布文章锁定（slug + pubDate）
+├── runbooks/rollback.md   # 回滚手册
+├── docs/                  # 基线表、回滚演练记录、路线图进度
 ├── public/                # favicon、robots.txt
 ├── AGENTS.md              # 给 AI 的项目说明书
 └── Makefile
