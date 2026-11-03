@@ -2,6 +2,8 @@
 
 一个纯静态的个人博客。Astro 6 + Markdown，没有数据库、没有后端、没有跟踪脚本。
 
+**线上地址：<https://xiongxiaoming513.github.io/>**
+
 - 浅色 / 深色主题，跟随系统，无闪烁
 - 中文排版优化（宋体标题 + 系统无衬线正文）
 - 文章目录、归档时间线（可按标签筛选）、标签、RSS、Sitemap、404
@@ -70,7 +72,7 @@ draft: false
 
 ## 部署
 
-### GitHub Pages（已配好）
+### GitHub Pages（已配置并上线）
 
 1. 推送到 GitHub，仓库 Settings → Pages → Source 选择 **GitHub Actions**
 2. 推送到 `main` 分支会自动构建部署（见 `.github/workflows/deploy.yml`）

@@ -11,8 +11,7 @@ export const SITE = {
 	locale: 'zh_CN',
 	tagline: '写代码，也写字。记录那些想清楚了的事。',
 	social: [
-		{ label: 'GitHub', href: 'https://github.com/' },
-		{ label: 'X', href: 'https://x.com/' },
+		{ label: 'GitHub', href: 'https://github.com/xiongxiaoming513' },
 		{ label: 'RSS', href: '/rss.xml' },
 	],
 	nav: [
