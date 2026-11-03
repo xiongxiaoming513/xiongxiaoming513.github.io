@@ -1,6 +1,6 @@
 {
 	"version": 1,
-	"generatedAt": "2026-11-03T02:33:07.402Z",
+	"generatedAt": "2026-11-03T03:06:26.471Z",
 	"posts": {
 		"agents-md-nobody-reads": {
 			"title": "AGENTS.md 写了没人看，通常是因为这三件事",
@@ -9,6 +9,10 @@
 		"ai-workflow-one-week": {
 			"title": "这周我把 AI 塞进了自己的工作流",
 			"pubDate": "2026-10-28"
+		},
+		"rollback-drill-63-seconds": {
+			"title": "我故意弄坏线上 63 秒，然后把它修好",
+			"pubDate": "2026-11-03"
 		},
 		"static-blog-again": {
 			"title": "把博客从动态换回静态之后",
