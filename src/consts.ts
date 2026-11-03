@@ -1,4 +1,3 @@
-// TODO: 换成你的站点名、名字、域名与链接
 // 注意：改了 url 后，请同步修改 astro.config.mjs 里的 site 字段
 
 export const SITE = {
@@ -6,8 +5,8 @@ export const SITE = {
 	shortTitle: '晓明',
 	description: '关于产品、工程与 AI 的长期笔记。写慢一点，写久一点。',
 	author: '晓明',
-	email: 'hello@example.com',
-	url: 'https://example.com',
+	email: 'xiongxiaoming513@users.noreply.github.com',
+	url: 'https://xiongxiaoming513.github.io',
 	lang: 'zh-CN',
 	locale: 'zh_CN',
 	tagline: '写代码，也写字。记录那些想清楚了的事。',

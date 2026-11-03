@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# TODO: 换成你的域名
-Sitemap: https://example.com/sitemap-index.xml
+Sitemap: https://xiongxiaoming513.github.io/sitemap-index.xml
