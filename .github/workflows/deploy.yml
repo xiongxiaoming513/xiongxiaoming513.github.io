@@ -32,6 +32,9 @@ jobs:
       - name: 安装依赖
         run: pnpm install --frozen-lockfile
 
+      - name: 内容门禁
+        run: node scripts/check-content.mjs
+
       - name: 构建
         run: pnpm build
 

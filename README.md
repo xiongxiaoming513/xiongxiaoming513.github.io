@@ -31,7 +31,8 @@ pnpm dev          # http://localhost:4321
 构建与验证：
 
 ```bash
-make verify       # 构建 + 自检（断链 / SEO / RSS）
+make gate         # 内容门禁（字段 / 结构 / 已发布文章锁定）
+make verify       # 门禁 + 构建 + 自检（断链 / SEO / RSS）
 pnpm preview      # 本地预览构建产物
 ```
 
@@ -96,6 +97,8 @@ Vercel / Netlify / Cloudflare Pages 都可以，构建命令 `pnpm build`，输�
 │   ├── pages/             # 路由
 │   └── styles/global.css  # 设计变量与排版
 ├── scripts/check.mjs      # 构建产物自检
+├── scripts/check-content.mjs  # 内容门禁（P0）
+├── content-lock.json      # 已发布文章锁定（slug + pubDate）
 ├── public/                # favicon、robots.txt
 ├── AGENTS.md              # 给 AI 的项目说明书
 └── Makefile

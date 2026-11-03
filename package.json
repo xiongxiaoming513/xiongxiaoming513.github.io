@@ -11,8 +11,10 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "node scripts/check.mjs",
-    "verify": "astro build && node scripts/check.mjs",
-    "astro": "astro"
+    "verify": "node scripts/check-content.mjs && astro build && node scripts/check.mjs",
+    "astro": "astro",
+    "gate": "node scripts/check-content.mjs",
+    "lock": "node scripts/check-content.mjs --update-lock"
   },
   "dependencies": {
     "@astrojs/mdx": "^6.0.3",

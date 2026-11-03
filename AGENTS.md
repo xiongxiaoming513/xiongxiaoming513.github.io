@@ -24,13 +24,20 @@
 | --- | --- |
 | 本地开发 | `pnpm dev`（http://localhost:4321） |
 | 构建 | `pnpm build` |
-| 构建 + 自检 | `make verify` |
+| 内容门禁 | `make gate`（检查字段 / 结构 / 已发布文章是否被篡改） |
+| 登记新文章 | `make lock`（更新 `content-lock.json`） |
+| 构建 + 自检 | `make verify`（= 门禁 + 构建 + 产物自检） |
 | 仅自检 | `node scripts/check.mjs` |
 | 预览产物 | `pnpm preview` |
 
-## 写文章的规则
+## 发布流程
 
-新文件放 `src/content/blog/<slug>.md`，frontmatter 必须是：
+1. 新文件放 `src/content/blog/<slug>.md`
+2. 填好 frontmatter（见下）
+3. `make verify` 通过后，运行 `make lock` 把新文章登记进 `content-lock.json`
+4. 提交时把 `.md` 和 `content-lock.json` 一起提交
+
+frontmatter 必须是：
 
 ```yaml
 ---
@@ -60,7 +67,8 @@ draft: false        # 可选；true 则不会被构建和 RSS 收录
 ## 禁区（P0，不要动）
 
 - `dist/`、`.astro/`、`node_modules/`：构建产物与依赖，改了会被覆盖。
-- `src/content/blog/` 里已发布文章的**标题与日期**：这会改变 URL 和 RSS，属于破坏性变更。
+- `src/content/blog/` 里已发布文章的 **slug 与 pubDate**：由 `content-lock.json` 锁定，改动会让 `make gate` 失败。确需改动时，改完运行 `make lock` 并在变更说明里写原因。
+- `content-lock.json`：只能通过 `make lock` 更新，不要手改。
 - `.github/workflows/`：部署链路。
 
 ## 验证要求

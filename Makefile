@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 .DEFAULT_GOAL := help
 
-.PHONY: help dev build preview verify check clean
+.PHONY: help dev build preview gate lock verify check clean
 
 help: ## 显示可用命令
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-10s\033[0m %s\n", $$1, $$2}'
@@ -18,7 +18,13 @@ preview: ## 本地预览构建产物
 check: ## 检查构建产物：断链 / SEO / RSS
 	node scripts/check.mjs
 
-verify: ## 完整验证：构建 + 自检
+gate: ## 内容门禁：字段 / 结构 / 已发布文章锁定
+	pnpm gate
+
+lock: ## 登记新文章到 content-lock.json
+	pnpm lock
+
+verify: ## 完整验证：门禁 + 构建 + 产物自检
 	pnpm verify
 
 clean: ## 清理构建产物

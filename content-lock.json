@@ -1,0 +1,26 @@
+{
+	"version": 1,
+	"generatedAt": "2026-11-03T02:33:07.402Z",
+	"posts": {
+		"agents-md-nobody-reads": {
+			"title": "AGENTS.md 写了没人看，通常是因为这三件事",
+			"pubDate": "2026-10-20"
+		},
+		"ai-workflow-one-week": {
+			"title": "这周我把 AI 塞进了自己的工作流",
+			"pubDate": "2026-10-28"
+		},
+		"static-blog-again": {
+			"title": "把博客从动态换回静态之后",
+			"pubDate": "2026-09-30"
+		},
+		"why-blog-2026": {
+			"title": "2026 年，我为什么还在写博客",
+			"pubDate": "2026-10-12"
+		},
+		"work-log-three-lines": {
+			"title": "我重新开始记工作日志，用了一个最笨的方法",
+			"pubDate": "2026-10-30"
+		}
+	}
+}
