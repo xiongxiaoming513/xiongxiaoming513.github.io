@@ -9,7 +9,7 @@ export const SITE = {
 	url: 'https://xiongxiaoming513.github.io',
 	lang: 'zh-CN',
 	locale: 'zh_CN',
-	tagline: '【回滚演练】这段文字不应该留在线上。',
+	tagline: '写代码，也写字。记录那些想清楚了的事。',
 	social: [
 		{ label: 'GitHub', href: 'https://github.com/xiongxiaoming513' },
 		{ label: 'RSS', href: '/rss.xml' },
