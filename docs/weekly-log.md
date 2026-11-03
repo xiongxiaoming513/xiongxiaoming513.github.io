@@ -9,14 +9,17 @@
 
 | 指标 | 本周 |
 | --- | --- |
-| 提交 | 17 次 |
-| 新增文章 | 5 篇 |
+| 提交 | 20 次 |
+| 新增文章 | 6 篇 |
 | 更新文章 | 0 篇 |
-| 累计文章 | 5 篇 |
-| 线上状态 | ✅ 200（194ms） · RSS 5 篇 |
+| 累计文章 | 6 篇 |
+| 线上状态 | ✅ 200（164ms） · RSS 6 篇 |
 
 **本周提交**
 
+- `79ab9e1` 11-03 feat(blog): 第 6 篇《我故意弄坏了线上 63 秒，然后把它修好》
+- `3ee00a7` 11-03 docs: 基线补实测数据 + 决策 Session 与选题池
+- `00ffec6` 11-03 feat(ops): 可用性监控与每周摘要
 - `b136d40` 11-03 docs: 基线表补充部署后冒烟指标
 - `3f377ec` 11-03 feat(smoke): 部署后自动冒烟，补上发布后观测
 - `af47d01` 11-03 docs: 回滚手册与演练记录，更新路线图进度
@@ -26,13 +29,11 @@
 - `8e89996` 11-03 docs: 新增基线表（首次记录 2026-11-03）
 - `5c072b0` 11-03 chore: 上线后收尾
 - `4dcb202` 11-03 chore: 配置线上域名 xiongxiaoming513.github.io
-- `549d81c` 11-03 docs: 新增 90 天路线图进度（第 5 天，约 40%）
-- `18c533c` 10-30 docs: 补充归档筛选截图
-- `1d57dd9` 10-30 feat(archive): 归档页支持按标签筛选，首页增加归档入口
-- …另有 5 次提交
+- …另有 8 次提交
 
 **新增文章**
 
+- [rollback-drill-63-seconds](https://xiongxiaoming513.github.io/blog/rollback-drill-63-seconds/)
 - [work-log-three-lines](https://xiongxiaoming513.github.io/blog/work-log-three-lines/)
 - [agents-md-nobody-reads](https://xiongxiaoming513.github.io/blog/agents-md-nobody-reads/)
 - [ai-workflow-one-week](https://xiongxiaoming513.github.io/blog/ai-workflow-one-week/)
@@ -41,8 +42,5 @@
 
 **提示**
 
-- 距上一篇发布：4 天
+- 距上一篇发布：0 天
 - 草稿箱：空
-
-
-<!-- digest:end -->

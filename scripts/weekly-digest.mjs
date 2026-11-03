@@ -159,13 +159,21 @@ const HEADER = `# 每周摘要
 
 const existing = existsSync(LOG_PATH) ? await readFile(LOG_PATH, 'utf8') : HEADER;
 
-if (existing.includes(`## ${weekLabel}（`)) {
-	console.log(`本周（${weekLabel}）摘要已存在，跳过写入`);
-	process.exit(0);
+// 同一周重复生成：覆盖旧条目（保证数据是最新的）；新的一周：插到最上面
+const header = `## ${weekLabel}（`;
+const startAt = existing.indexOf(header);
+let next;
+
+if (startAt !== -1) {
+	const nextAt = existing.indexOf('\n## ', startAt + header.length);
+	const before = existing.slice(0, startAt);
+	const after = nextAt === -1 ? '' : existing.slice(nextAt);
+	next = before + digest + (after || '\n');
+} else {
+	const marker = '<!-- digest:start -->';
+	const insertAt = existing.indexOf(marker) + marker.length;
+	next = `${existing.slice(0, insertAt)}\n\n${digest}\n${existing.slice(insertAt)}`;
 }
-const marker = '<!-- digest:start -->';
-const insertAt = existing.indexOf(marker) + marker.length;
-const next = `${existing.slice(0, insertAt)}\n\n${digest}\n${existing.slice(insertAt)}`;
 
 await writeFile(LOG_PATH, next, 'utf8');
 console.log(`已写入 ${LOG_PATH}`);
