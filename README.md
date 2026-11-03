@@ -42,6 +42,8 @@ pnpm preview      # 本地预览构建产物
 
 ## 写一篇文章
 
+> 选题卡住时，用 [docs/decision-session.md](docs/decision-session.md) 里的 1 分钟筛选法。
+
 在 `src/content/blog/` 下新建 `<slug>.md`：
 
 ```markdown
@@ -107,7 +109,7 @@ Vercel / Netlify / Cloudflare Pages 都可以，构建命令 `pnpm build`，输�
 ├── docs/weekly-log.md     # 每周摘要存档
 ├── content-lock.json      # 已发布文章锁定（slug + pubDate）
 ├── runbooks/rollback.md   # 回滚手册
-├── docs/                  # 基线表、回滚演练记录、路线图进度
+├── docs/                  # 基线表、回滚演练、路线图进度、周报、选题池
 ├── public/                # favicon、robots.txt
 ├── AGENTS.md              # 给 AI 的项目说明书
 └── Makefile

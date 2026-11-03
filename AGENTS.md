@@ -21,7 +21,7 @@
 | `scripts/weekly-digest.mjs` | 每周摘要生成 | `make digest` |
 | `content-lock.json` | 已发布文章的 slug + pubDate 锁定 | 只能 `make lock` 更新 |
 | `runbooks/` | 回滚手册 | 发布异常先看这里 |
-| `docs/` | 基线表、回滚演练、路线图进度、每周摘要 | |
+| `docs/` | 基线表、回滚演练、路线图进度、每周摘要、决策 Session、选题池 | |
 | `.github/workflows/` | deploy（构建+发布+冒烟）、uptime（每 6 小时）、weekly（每周摘要） | 改动属于 P0 |
 | `dist/` | 构建产物，**不要手改** | 已被 gitignore |
 
