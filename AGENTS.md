@@ -17,9 +17,12 @@
 | `src/styles/global.css` | 全部设计变量与排版 | 颜色、字体、间距都在这 |
 | `scripts/check.mjs` | 构建产物自检：断链、SEO、RSS | |
 | `scripts/check-content.mjs` | 内容门禁：字段 / 结构 / 已发布文章锁定 | `make gate` |
+| `scripts/smoke.mjs` | 部署后线上冒烟 | `make smoke` |
+| `scripts/weekly-digest.mjs` | 每周摘要生成 | `make digest` |
 | `content-lock.json` | 已发布文章的 slug + pubDate 锁定 | 只能 `make lock` 更新 |
 | `runbooks/` | 回滚手册 | 发布异常先看这里 |
-| `docs/` | 基线表、回滚演练、路线图进度 | |
+| `docs/` | 基线表、回滚演练、路线图进度、每周摘要 | |
+| `.github/workflows/` | deploy（构建+发布+冒烟）、uptime（每 6 小时）、weekly（每周摘要） | 改动属于 P0 |
 | `dist/` | 构建产物，**不要手改** | 已被 gitignore |
 
 ## 常用命令
@@ -33,6 +36,7 @@
 | 构建 + 自检 | `make verify`（= 门禁 + 构建 + 产物自检） |
 | 仅自检 | `node scripts/check.mjs` |
 | 线上冒烟 | `make smoke`（检查线上 7 项，约 0.5 秒） |
+| 每周摘要 | `make digest`（写入 `docs/weekly-log.md`） |
 | 预览产物 | `pnpm preview` |
 
 ## 发布流程

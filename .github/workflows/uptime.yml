@@ -1,0 +1,25 @@
+name: 可用性检查
+
+# 每 6 小时跑一次线上冒烟，失败会给仓库管理员发邮件。
+# 注意：GitHub 在仓库连续 60 天无活动时会自动停用定时任务；有提交即恢复。
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  uptime:
+    name: 线上可用性
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: 冒烟检查
+        run: node scripts/smoke.mjs

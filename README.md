@@ -4,6 +4,9 @@
 
 **线上地址：<https://xiongxiaoming513.github.io/>**
 
+[![部署](https://github.com/xiongxiaoming513/xiongxiaoming513.github.io/actions/workflows/deploy.yml/badge.svg)](https://github.com/xiongxiaoming513/xiongxiaoming513.github.io/actions/workflows/deploy.yml)
+[![可用性](https://github.com/xiongxiaoming513/xiongxiaoming513.github.io/actions/workflows/uptime.yml/badge.svg)](https://github.com/xiongxiaoming513/xiongxiaoming513.github.io/actions/workflows/uptime.yml)
+
 - 浅色 / 深色主题，跟随系统，无闪烁
 - 中文排版优化（宋体标题 + 系统无衬线正文）
 - 文章目录、归档时间线（可按标签筛选）、标签、RSS、Sitemap、404
@@ -100,6 +103,8 @@ Vercel / Netlify / Cloudflare Pages 都可以，构建命令 `pnpm build`，输�
 ├── scripts/check.mjs      # 构建产物自检
 ├── scripts/check-content.mjs  # 内容门禁（P0）
 ├── scripts/smoke.mjs      # 部署后线上冒烟
+├── scripts/weekly-digest.mjs  # 每周摘要
+├── docs/weekly-log.md     # 每周摘要存档
 ├── content-lock.json      # 已发布文章锁定（slug + pubDate）
 ├── runbooks/rollback.md   # 回滚手册
 ├── docs/                  # 基线表、回滚演练记录、路线图进度

@@ -15,7 +15,9 @@
     "astro": "astro",
     "gate": "node scripts/check-content.mjs",
     "lock": "node scripts/check-content.mjs --update-lock",
-    "smoke": "node scripts/smoke.mjs"
+    "smoke": "node scripts/smoke.mjs",
+    "digest": "node scripts/weekly-digest.mjs",
+    "digest:write": "node scripts/weekly-digest.mjs --write"
   },
   "dependencies": {
     "@astrojs/mdx": "^6.0.3",
