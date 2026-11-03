@@ -47,12 +47,16 @@ curl -s -o /dev/null -w "%{http_code}\n" https://xiongxiaoming513.github.io/
 curl -s -o /dev/null -w "%{http_code}\n" https://xiongxiaoming513.github.io/archive/
 curl -s -o /dev/null -w "%{http_code}\n" https://xiongxiaoming513.github.io/rss.xml
 
-# 3. 坏内容确实消失（把关键词换掉）
+# 3. 跑一遍冒烟（7 项关键检查）
+node scripts/smoke.mjs
+
+# 4. 坏内容确实消失（把关键词换掉）
 curl -s https://xiongxiaoming513.github.io/ | grep -c "<坏内容关键词>"
 ```
 
 - [ ] 首页 200，关键文案正确
 - [ ] 归档页 / RSS 200
+- [ ] `node scripts/smoke.mjs` 7/7 通过
 - [ ] 坏内容在线上搜不到
 - [ ] `git log` 里有 revert 记录
 
@@ -68,7 +72,8 @@ curl -s https://xiongxiaoming513.github.io/ | grep -c "<坏内容关键词>"
 
 | 限制 | 说明 | 缓解 |
 | --- | --- | --- |
-| 无自动监控 | 页面崩了不会主动报警，依赖人发现 | 部署后手动跑一次关键页面检查 |
+| 无真实用户监控 | 只能确认"发布后是好的"，无法知道"半夜是否挂了" | CI 部署后自动跑 smoke；后续可加外部 uptime 监控 |
 | 部署窗口 | Actions 约 30–45 秒，期间可能新旧混合 | 避免频繁连续发布 |
 | 无灰度 | 静态站没有流量切分，回滚是全量切换 | 大改动前先在本地 `make verify` |
 | 无版本回放 | 不能直接重发历史构建产物 | 用 revert 重新走一次发布 |
+| 冒烟覆盖有限 | 只查 7 条关键路径，不查样式与交互 | 大改动时配合人工预览 |

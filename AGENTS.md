@@ -32,6 +32,7 @@
 | 登记新文章 | `make lock`（更新 `content-lock.json`） |
 | 构建 + 自检 | `make verify`（= 门禁 + 构建 + 产物自检） |
 | 仅自检 | `node scripts/check.mjs` |
+| 线上冒烟 | `make smoke`（检查线上 7 项，约 0.5 秒） |
 | 预览产物 | `pnpm preview` |
 
 ## 发布流程
@@ -40,6 +41,7 @@
 2. 填好 frontmatter（见下）
 3. `make verify` 通过后，运行 `make lock` 把新文章登记进 `content-lock.json`
 4. 提交时把 `.md` 和 `content-lock.json` 一起提交
+5. 推送后等 Actions 跑完（含自动冒烟），再手动 `make smoke` 确认线上
 
 frontmatter 必须是：
 
@@ -86,6 +88,7 @@ make verify
 通过标准：构建成功、断链 0、每页都有 title 和 description、RSS 有内容。
 
 涉及视觉改动时，另外说明改了哪些页面、深色模式下是否检查过。
+发布后：CI 会自动跑 `scripts/smoke.mjs`；失败说明线上有问题，按 `runbooks/rollback.md` 回滚。
 
 ## 写作语气（改文案时遵守）
 

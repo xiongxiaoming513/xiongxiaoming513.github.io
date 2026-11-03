@@ -33,6 +33,7 @@ pnpm dev          # http://localhost:4321
 ```bash
 make gate         # 内容门禁（字段 / 结构 / 已发布文章锁定）
 make verify       # 门禁 + 构建 + 自检（断链 / SEO / RSS）
+make smoke        # 线上冒烟（7 项关键检查，约 0.5 秒）
 pnpm preview      # 本地预览构建产物
 ```
 
@@ -98,6 +99,7 @@ Vercel / Netlify / Cloudflare Pages 都可以，构建命令 `pnpm build`，输�
 │   └── styles/global.css  # 设计变量与排版
 ├── scripts/check.mjs      # 构建产物自检
 ├── scripts/check-content.mjs  # 内容门禁（P0）
+├── scripts/smoke.mjs      # 部署后线上冒烟
 ├── content-lock.json      # 已发布文章锁定（slug + pubDate）
 ├── runbooks/rollback.md   # 回滚手册
 ├── docs/                  # 基线表、回滚演练记录、路线图进度

@@ -40,8 +40,8 @@
 
 ## 改进项
 
-- [ ] 加 `scripts/smoke.mjs`：部署后自动检查首页 / 归档 / RSS / 文章页关键文案（下一步）
-- [ ] 打开 GitHub Actions 的失败邮件通知
+- [x] 加 `scripts/smoke.mjs`：部署后自动检查首页 / 归档 / RSS / 文章页关键文案（11-03 已完成，7 项）
+- [ ] 打开 GitHub Actions 的失败邮件通知（CI 失败会自动发邮件，待确认设置）
 - [ ] 把"发布后 60 秒内跑一次 smoke"写进发布习惯
 - [ ] 大改动（样式重写、路由调整）前，先本地 `make verify` + `pnpm preview` 人工过一遍
 
